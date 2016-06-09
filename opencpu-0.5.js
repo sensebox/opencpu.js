@@ -16,7 +16,7 @@
 
 //Warning for the newbies
 if(!window.jQuery) {
-  alert("Could not find jQuery! The HTML must include jquery.js before opencpu.js!")
+  console.log("Could not find jQuery! The HTML must include jquery.js before opencpu.js!")
 }
 
 (function ( $ ) {
@@ -364,7 +364,7 @@ if(!window.jQuery) {
 
   function testhtml5(){
     if( window.FormData === undefined ) {
-      alert("Uploading of files requires HTML5. It looks like you are using an outdated browser that does not support this. Please install Firefox, Chrome or Internet Explorer 10+");
+      console.log("Uploading of files requires HTML5. It looks like you are using an outdated browser that does not support this. Please install Firefox, Chrome or Internet Explorer 10+");
       throw "HTML5 required.";
     }
   }
@@ -376,7 +376,7 @@ if(!window.jQuery) {
   //global settings
   function seturl(newpath){
     if(!newpath.match("/R$")){
-      alert("ERROR! Trying to set R url to: " + newpath +". Path to an OpenCPU R package must end with '/R'");
+      console.log("ERROR! Trying to set R url to: " + newpath +". Path to an OpenCPU R package must end with '/R'");
     } else {
       r_path = document.createElement('a');
       r_path.href = newpath;
@@ -385,7 +385,7 @@ if(!window.jQuery) {
       if(location.protocol != r_path.protocol || location.host != r_path.host){
         r_cors = true;
         if (!('withCredentials' in new XMLHttpRequest())) {
-          alert("This browser does not support CORS. Try using Firefox or Chrome.");
+          console.log("This browser does not support CORS. Try using Firefox or Chrome.");
         } else if(r_path.username && r_path.password) {
           //should only do this for calls to opencpu maybe
           var regex = new RegExp(r_path.host);
@@ -416,7 +416,7 @@ if(!window.jQuery) {
       }
 
       if(location.protocol == "https:" && r_path.protocol != "https:"){
-        alert("Page is hosted on HTTPS but using a (non-SSL) HTTP OpenCPU server. This is insecure and most browsers will not allow this.")
+        console.log("Page is hosted on HTTPS but using a (non-SSL) HTTP OpenCPU server. This is insecure and most browsers will not allow this.")
       }
 
       if(r_cors){
@@ -430,7 +430,7 @@ if(!window.jQuery) {
         console.log("Path updated. Available objects/functions:\n" + resdata);
 
       }).fail(function(xhr, textStatus, errorThrown){
-        alert("Connection to OpenCPU failed:\n" + textStatus + "\n" + xhr.responseText + "\n" + errorThrown);
+        console.log("Connection to OpenCPU failed:\n" + textStatus + "\n" + xhr.responseText + "\n" + errorThrown);
       });
     }
   }
